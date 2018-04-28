@@ -42,7 +42,7 @@ static int read_index(istream& is)
 	return index - 1;
 }
 
-static void read_face_vertex(mesh& m, istream& is)
+static void read_face_vertex(mesh& m, istream&& is)
 {
 	auto& f = m.faces.back();
 	f.vertices.push_back(mesh::face::vertex());
@@ -60,7 +60,7 @@ static void read_face(mesh& m, istream& is)
 		read_face_vertex(m, istringstream(token));
 }
 
-static void read_line(mesh& m, istream& is)
+static void read_line(mesh& m, istream&& is)
 {
 	string type;
 	is >> type;
@@ -74,7 +74,7 @@ static void read_line(mesh& m, istream& is)
 		read_face(m, is);
 }
 
-static void read_lines(mesh& m, istream& is)
+static void read_lines(mesh& m, istream&& is)
 {
 	string line;
 	while (getline(is, line))
